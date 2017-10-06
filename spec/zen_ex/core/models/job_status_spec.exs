@@ -28,8 +28,8 @@ defmodule ZenEx.Model.JobStatusSpec do
              ]})
   end
 
-  let :response_job_status, do: %HTTPotion.Response{body: json_job_status()}
-  let :response_job_statuses, do: %HTTPotion.Response{body: json_job_statuses()}
+  let :response_job_status, do: %HTTPotion.Response{status_code: 200, body: json_job_status()}
+  let :response_job_statuses, do: %HTTPotion.Response{status_code: 200, body: json_job_statuses()}
 
   describe "list" do
     before do: allow HTTPotion |> to(accept :get, fn(_, _) -> response_job_statuses() end)

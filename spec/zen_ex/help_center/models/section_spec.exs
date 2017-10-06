@@ -19,8 +19,8 @@ defmodule ZenEx.HelpCenter.Model.SectionSpec do
   let :json_section, do: ~s({"section":{"id":35436,"name":"My printer is on fire!","locale":"en-us","category_id":112233}})
   let :section, do: struct(Section, %{id: 35436, name: "My printer is on fire!", locale: "en-us", category_id: category().id})
 
-  let :response_section, do: %HTTPotion.Response{body: json_section()}
-  let :response_sections, do: %HTTPotion.Response{body: json_sections()}
+  let :response_section, do: %HTTPotion.Response{status_code: 200, body: json_section()}
+  let :response_sections, do: %HTTPotion.Response{status_code: 200, body: json_sections()}
   let :response_204, do: %HTTPotion.Response{status_code: 204}
   let :response_404, do: %HTTPotion.Response{status_code: 404}
 

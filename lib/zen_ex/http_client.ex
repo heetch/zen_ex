@@ -44,7 +44,7 @@ defmodule ZenEx.HTTPClient do
     {"#{Application.get_env(:zen_ex, :user)}/token", "#{Application.get_env(:zen_ex, :api_token)}"}
   end
 
-  def _build_entity(%HTTPotion.Response{} = res, [{key, [module]}]) do
+  def _build_entity(%HTTPotion.Response{status_code: status_code} = res, [{key, [module]}]) when status_code in 200..299 do
     {entities, page} =
       res.body
       |> Poison.decode!(keys: :atoms, as: %{key => [struct(module)]})
@@ -52,7 +52,23 @@ defmodule ZenEx.HTTPClient do
 
     struct(Collection, Map.merge(page, %{entities: entities, decode_as: [{key, [module]}]}))
   end
-  def _build_entity(%HTTPotion.Response{} = res, [{key, module}]) do
+  def _build_entity(%HTTPotion.Response{status_code: status_code} = res, [{key, module}]) when status_code in 200..299 do
     res.body |> Poison.decode!(keys: :atoms, as: %{key => struct(module)}) |> Map.get(key)
+  end
+
+  def _build_entity(%HTTPotion.Response{status_code: 404} = res, _) do
+    body = res.body |> Poison.decode!()
+    {:error, {:record_not_found, body}}
+  end
+  def _build_entity(%HTTPotion.Response{status_code: status_code} = res, _) when status_code in 400..499 do
+    body = res.body |> Poison.decode!()
+    {:error, {:client_error, body}}
+  end
+  def _build_entity(%HTTPotion.Response{status_code: _} = res, _) do
+    {:error, {:unknown_error, res.body}}
+  end
+
+  def _build_entity(%HTTPotion.ErrorResponse{message: message}, _) do
+    {:error, {:network_error, message}}
   end
 end

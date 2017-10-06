@@ -22,9 +22,9 @@ defmodule ZenEx.Model.TicketSpec do
     struct(JobStatus, %{id: "8b726e606741012ffc2d782bcb7848fe", status: "completed"})
   end
 
-  let :response_ticket, do: %HTTPotion.Response{body: json_ticket()}
-  let :response_tickets, do: %HTTPotion.Response{body: json_tickets()}
-  let :response_job_status, do: %HTTPotion.Response{body: json_job_status()}
+  let :response_ticket, do: %HTTPotion.Response{status_code: 200, body: json_ticket()}
+  let :response_tickets, do: %HTTPotion.Response{status_code: 200, body: json_tickets()}
+  let :response_job_status, do: %HTTPotion.Response{status_code: 200, body: json_job_status()}
   let :response_204, do: %HTTPotion.Response{status_code: 204}
   let :response_404, do: %HTTPotion.Response{status_code: 404}
 

@@ -22,8 +22,8 @@ defmodule ZenEx.Model.DynamicContentSpec do
     struct(DynamicContent, %{id: 112233, name: "mail-address", default_locale_id: 1, variants: variants()})
   end
 
-  let :response_dynamic_content, do: %HTTPotion.Response{body: json_dynamic_content()}
-  let :response_dynamic_contents, do: %HTTPotion.Response{body: json_dynamic_contents()}
+  let :response_dynamic_content, do: %HTTPotion.Response{status_code: 200, body: json_dynamic_content()}
+  let :response_dynamic_contents, do: %HTTPotion.Response{status_code: 200, body: json_dynamic_contents()}
   let :response_204, do: %HTTPotion.Response{status_code: 204}
   let :response_404, do: %HTTPotion.Response{status_code: 404}
 
