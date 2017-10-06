@@ -21,9 +21,9 @@ defmodule ZenEx.Model.UserSpec do
     struct(JobStatus, %{id: "8b726e606741012ffc2d782bcb7848fe", status: "completed"})
   end
 
-  let :response_user, do: %HTTPotion.Response{body: json_user()}
-  let :response_users, do: %HTTPotion.Response{body: json_users()}
-  let :response_job_status, do: %HTTPotion.Response{body: json_job_status()}
+  let :response_user, do: %HTTPotion.Response{status_code: 200, body: json_user()}
+  let :response_users, do: %HTTPotion.Response{status_code: 200, body: json_users()}
+  let :response_job_status, do: %HTTPotion.Response{status_code: 200, body: json_job_status()}
 
   describe "list" do
     before do: allow HTTPotion |> to(accept :get, fn(_, _) -> response_users() end)

@@ -23,9 +23,9 @@ defmodule ZenEx.HelpCenter.Model.ArticleSpec do
     ~s({"results":[{"id":35436,"name":"Help I need somebody!","locale":"en-us","section_id":112233},{"id":20057623,"name":"Not just anybody!","locale":"en-us","section_id":112233}]})
   end
 
-  let :response_article, do: %HTTPotion.Response{body: json_article()}
-  let :response_articles, do: %HTTPotion.Response{body: json_articles()}
-  let :response_results, do: %HTTPotion.Response{body: json_results()}
+  let :response_article, do: %HTTPotion.Response{status_code: 200, body: json_article()}
+  let :response_articles, do: %HTTPotion.Response{status_code: 200, body: json_articles()}
+  let :response_results, do: %HTTPotion.Response{status_code: 200, body: json_results()}
   let :response_204, do: %HTTPotion.Response{status_code: 204}
   let :response_404, do: %HTTPotion.Response{status_code: 404}
 

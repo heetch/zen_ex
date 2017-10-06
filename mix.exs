@@ -8,7 +8,7 @@ defmodule ZenEx.Mixfile do
   def project do
     [app: :zen_ex,
      version: "0.3.1",
-     elixir: "~> 1.4",
+     elixir: "~> 1.5",
      description: @description,
      package: package(),
      build_embedded: Mix.env == :prod,
@@ -43,7 +43,7 @@ defmodule ZenEx.Mixfile do
   defp deps do
     [
       {:earmark, "~> 1.2.1", only: :dev, runtime: false},
-      {:espec, "~> 1.3.4", only: :test},
+      {:espec, "~> 1.4.6", only: :test},
       {:ex_doc, "~> 0.14", only: :dev, runtime: false},
       {:httpotion, "~> 3.0.2"},
       {:poison, "~> 3.0"}

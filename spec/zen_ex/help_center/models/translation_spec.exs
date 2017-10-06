@@ -19,9 +19,9 @@ defmodule ZenEx.HelpCenter.Model.TranslationSpec do
     ~s({"locales":["en-us","ja"]})
   end
 
-  let :response_translation, do: %HTTPotion.Response{body: json_translation()}
-  let :response_translations, do: %HTTPotion.Response{body: json_translations()}
-  let :response_locales, do: %HTTPotion.Response{body: json_locales()}
+  let :response_translation, do: %HTTPotion.Response{status_code: 200, body: json_translation()}
+  let :response_translations, do: %HTTPotion.Response{status_code: 200, body: json_translations()}
+  let :response_locales, do: %HTTPotion.Response{status_code: 200, body: json_locales()}
   let :response_204, do: %HTTPotion.Response{status_code: 204}
   let :response_404, do: %HTTPotion.Response{status_code: 404}
 

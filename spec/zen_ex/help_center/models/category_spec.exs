@@ -15,8 +15,8 @@ defmodule ZenEx.HelpCenter.Model.CategorySpec do
   let :json_category, do: ~s({"category":{"id":35436,"name":"My printer is on fire!","locale":"en-us"}})
   let :category, do: struct(Category, %{id: 35436, name: "My printer is on fire!", locale: "en-us"})
 
-  let :response_category, do: %HTTPotion.Response{body: json_category()}
-  let :response_categories, do: %HTTPotion.Response{body: json_categories()}
+  let :response_category, do: %HTTPotion.Response{status_code: 200, body: json_category()}
+  let :response_categories, do: %HTTPotion.Response{status_code: 200, body: json_categories()}
   let :response_204, do: %HTTPotion.Response{status_code: 204}
   let :response_404, do: %HTTPotion.Response{status_code: 404}
 
